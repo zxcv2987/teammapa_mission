@@ -1,6 +1,4 @@
-import Link from 'next/link';
 import {
-  Sidebar,
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
@@ -10,23 +8,31 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import {getCategoryList} from '@/api/category';
+import DesktopSidebar from '@/components/sidebar/DesktopSidebar';
+import SidebarButton from '@/components/sidebar/SidebarButton';
 
 export default async function SidebarPage() {
   const category = await getCategoryList();
 
   return (
-    <Sidebar collapsible="none">
+    <DesktopSidebar>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>메뉴</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <SidebarButton href="/" name="전체" />
+                </SidebarMenuButton>
+              </SidebarMenuItem>
               {category.map(category => (
                 <SidebarMenuItem key={category.name + category.id}>
                   <SidebarMenuButton asChild>
-                    <Link href={`/category/${category.name}`}>
-                      <span>{category.name}</span>
-                    </Link>
+                    <SidebarButton
+                      href={`/${category.id}`}
+                      name={category.name}
+                    />
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -34,6 +40,6 @@ export default async function SidebarPage() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-    </Sidebar>
+    </DesktopSidebar>
   );
 }

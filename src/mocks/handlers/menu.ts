@@ -7,11 +7,7 @@ import {
   PRICE_RANGES,
 } from '@/mocks/mockData';
 
-const generateFoodImageUrl = (
-  categoryName: string,
-  menuName: string,
-  id: number,
-) => {
+const generateFoodImageUrl = (categoryName: string, id: number) => {
   const categoryKeywords = {
     한식: 'korean-food',
     중식: 'chinese-food',
@@ -36,7 +32,7 @@ const generateFoodImageUrl = (
   return `https://source.unsplash.com/400x300/?${keyword}&${id}`;
 };
 
-export function menuHandler() {
+const generateMockMenuList = () => {
   const categories = generateMockCategories();
 
   const mockMenuList: Menu[] = [];
@@ -48,7 +44,7 @@ export function menuHandler() {
       category.name as keyof typeof PRICE_RANGES
     ] || {min: 5000, max: 20000};
 
-    const menuCount = faker.number.int({min: 1, max: 4});
+    const menuCount = faker.number.int({min: 1, max: 8});
 
     for (let i = 0; i < menuCount && i < menuNames.length; i++) {
       const menuName = faker.helpers.arrayElement(menuNames);
@@ -57,9 +53,9 @@ export function menuHandler() {
         mockMenuList.push({
           id: menuId++,
           name: menuName,
-          price: faker.number.int(priceRange),
+          price: Math.round(faker.number.int(priceRange) / 1000) * 1000,
           description: `${faker.food.description()}`,
-          imageUrl: generateFoodImageUrl(category.name, menuName, menuId),
+          imageUrl: generateFoodImageUrl(category.name, menuId),
           totalSales: faker.number.int({min: 0, max: 500}),
           category: {
             id: category.id,
@@ -69,8 +65,30 @@ export function menuHandler() {
       }
     }
   });
+  return mockMenuList;
+};
+
+export function menuHandler() {
+  const mockMenuList = generateMockMenuList();
 
   return http.get('/api/menu', () => {
     return HttpResponse.json(mockMenuList);
+  });
+}
+
+export function menuByCategoryHandler() {
+  return http.get('/api/menu/:categoryId', ({params}) => {
+    const {categoryId} = params;
+
+    if (!categoryId) {
+      return new HttpResponse('categoryId is required', {status: 400});
+    }
+    const allMenus = generateMockMenuList();
+
+    const filteredMenus = allMenus.filter(
+      menu => menu.category.id === Number(categoryId),
+    );
+
+    return HttpResponse.json(filteredMenus);
   });
 }

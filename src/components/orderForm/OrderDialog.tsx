@@ -22,15 +22,16 @@ export default function OrderDialog() {
   const [open, setOpen] = useState(false);
   const orderItems = useOrderStore(state => state.items);
   const totalPrice = useOrderStore(state => state.getTotalPrice());
+  const clearOrder = useOrderStore(state => state.clearOrder);
   const addOrderHistory = useOrderHistoryStore(state => state.addOrderHistory);
   const isEmpty = orderItems.length === 0;
 
   const handleOrder = async (orderItems: OrderItemType[]) => {
     const res = await postOrder(orderItems);
-    console.log(res);
     if (res.status === 200) {
       setOpen(false);
       addOrderHistory(orderItems);
+      clearOrder();
     } else {
       alert('주문에 실패했습니다.');
     }
@@ -60,7 +61,7 @@ export default function OrderDialog() {
           </div>
         </div>
         <DialogFooter>
-          <Button size="lg" onClick={handleOrder}>
+          <Button size="lg" onClick={() => handleOrder(orderItems)}>
             주문하기
           </Button>
           <DialogClose asChild>

@@ -11,7 +11,9 @@ export async function getMenuList(): Promise<Menu[]> {
   return response;
 }
 
-export async function getMenuByCategory(categoryId: number): Promise<Menu[]> {
+export async function getMenuListByCategory(
+  categoryId: number,
+): Promise<Menu[]> {
   const response = await apiClient({
     path: `/api/menu/${categoryId}`,
     options: {

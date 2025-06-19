@@ -1,7 +1,7 @@
-import OrderDialog from '@/components/orderForm/OrderDialog';
-import OrderHistoryDialog from '@/components/orderForm/OrderHistoryDialog';
-import OrderList from '@/components/orderForm/OrderList';
-import TotalPrice from '@/components/orderForm/TotalPrice';
+import OrderDialog from '@/features/order/components/dialog/OrderDialog';
+import OrderHistoryDialog from '@/features/order/components/dialog/OrderHistoryDialog';
+import OrderList from '@/features/order/components/OrderList';
+import TotalPrice from '@/features/order/components/TotalPrice';
 import {
   Sidebar,
   SidebarContent,
@@ -9,9 +9,9 @@ import {
   SidebarGroupLabel,
   SidebarGroupContent,
   SidebarFooter,
-} from '@/components/ui/sidebar';
+} from '@/ui/sidebar';
 
-export default function OrderPage() {
+export default function OrderComponent() {
   return (
     <Sidebar collapsible="none" side="right" className="bg-zinc-50 h-screen">
       <SidebarContent>
@@ -19,7 +19,7 @@ export default function OrderPage() {
           <SidebarGroupLabel className="text-xl font-bold text-zinc-800 p-4">
             주문서
           </SidebarGroupLabel>
-          <SidebarGroupContent className="p-4">
+          <SidebarGroupContent className="p-2">
             <OrderList />
           </SidebarGroupContent>
         </SidebarGroup>

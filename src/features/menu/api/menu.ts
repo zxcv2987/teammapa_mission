@@ -1,7 +1,7 @@
 import {Menu, MenuResponse} from '@/features/menu/type/menu';
 import {apiClient} from '@/lib/apiClient';
 
-export async function getAllMenuList(): Promise<Menu[]> {
+export async function getAllMenuList(): Promise<MenuResponse> {
   const response = await apiClient({
     path: '/api/menu',
     options: {
@@ -15,25 +15,35 @@ export async function getInfiniteMenuList({
   categoryId,
   pageParams,
 }: {
-  categoryId?: number;
+  categoryId?: string;
   pageParams: number;
 }): Promise<MenuResponse> {
   const response = await apiClient({
-    path: `/api/menu?pageParams=${pageParams}&category=${categoryId}`,
+    path: `/api/menu?pageParams=${pageParams}&categoryId=${categoryId}`,
     options: {
       method: 'GET',
     },
   });
 
-  console.log('response', response);
-  return {data: response.data, pageParams: pageParams + 10};
+  return {
+    data: response.data,
+    nextCursor: response.nextCursor,
+  };
 }
 
-export async function getMenuListByCategory(
-  categoryId: number,
-): Promise<Menu[]> {
+export async function getMenu(menuId: number): Promise<Menu> {
   const response = await apiClient({
-    path: `/api/menu/${categoryId}`,
+    path: `/api/menu?menuId=${menuId}`,
+    options: {
+      method: 'GET',
+    },
+  });
+  return response;
+}
+
+export async function getBestMenuList(): Promise<Menu[]> {
+  const response = await apiClient({
+    path: '/api/best',
     options: {
       method: 'GET',
     },

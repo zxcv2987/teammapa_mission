@@ -3,6 +3,7 @@
 import {useSuspenseQuery} from '@tanstack/react-query';
 import {getCategoryList} from '../api/category';
 import {Category} from '../type/category';
+import {queryKeys} from '@/lib/queryKeys';
 
 export default function useCategory() {
   const {
@@ -10,7 +11,7 @@ export default function useCategory() {
     isLoading,
     error,
   } = useSuspenseQuery<Category[]>({
-    queryKey: ['category'],
+    queryKey: queryKeys.categories.list(),
     queryFn: () => getCategoryList(),
   });
 

@@ -5,14 +5,7 @@ import {getInfiniteMenuList} from '../api/menu';
 import {queryKeys} from '@/lib/queryKeys';
 
 export default function useInfiniteMenu(categoryId?: string) {
-  const {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-    isFetching,
-    isFetched,
-  } = useInfiniteQuery({
+  return useInfiniteQuery({
     queryKey: queryKeys.menus.list(categoryId),
     queryFn: ({pageParam = 0}) =>
       getInfiniteMenuList({
@@ -23,13 +16,4 @@ export default function useInfiniteMenu(categoryId?: string) {
     initialPageParam: 0,
     enabled: !!categoryId,
   });
-
-  return {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-    isFetching,
-    isFetched,
-  };
 }

@@ -7,16 +7,14 @@ import {SidebarProvider} from '@/ui/sidebar';
 export default function MainLayout({children}: {children: React.ReactNode}) {
   return (
     <div className="flex flex-row h-screen">
-      <SidebarProvider className="w-fit">
+      <SidebarProvider>
         <SidebarComponent />
-      </SidebarProvider>
-      <div className="flex flex-col flex-1 w-full">
-        <CarouselComponent />
-        <ScrollArea className="w-full flex items-start flex-1 overflow-y-auto">
-          {children}
-        </ScrollArea>
-      </div>
-      <SidebarProvider className="w-fit h-full">
+        <div className="flex flex-col flex-1 w-full">
+          <CarouselComponent />
+          <ScrollArea className="w-full flex items-start flex-1 overflow-y-auto">
+            {children}
+          </ScrollArea>
+        </div>
         <OrderComponent />
       </SidebarProvider>
     </div>

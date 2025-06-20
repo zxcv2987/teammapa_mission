@@ -1,5 +1,5 @@
 import {http, HttpResponse} from 'msw';
-import {generateMockCategories} from '@/mocks/mockData';
+import {generateMockCategories} from '@/constants/mocks/mockData';
 
 export function categoryHandler() {
   const mockCategoryList = generateMockCategories();

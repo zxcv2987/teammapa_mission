@@ -16,11 +16,13 @@ import {cn} from '@/lib/utils';
 import useCategory from '../hook/useCategory';
 import SidebarButton from './SidebarButton';
 import {Skeleton} from '@/ui/skeleton';
+import {usePathname} from 'next/navigation';
 
 export default function CategorySidebar() {
   const {isMobile} = useSidebar();
   const collapsible = isMobile ? 'offcanvas' : 'none';
   const {categoryList, isLoading} = useCategory();
+  const pathname = usePathname();
 
   return (
     <>
@@ -35,7 +37,19 @@ export default function CategorySidebar() {
               <SidebarMenu>
                 <SidebarMenuItem>
                   <SidebarMenuButton asChild>
-                    <SidebarButton href="/">전체</SidebarButton>
+                    <SidebarButton href="/" selected={pathname === '/'}>
+                      전체
+                    </SidebarButton>
+                  </SidebarMenuButton>
+                  <SidebarMenuButton asChild>
+                    <SidebarButton href="/best" selected={pathname === '/best'}>
+                      best
+                    </SidebarButton>
+                  </SidebarMenuButton>
+                  <SidebarMenuButton asChild>
+                    <SidebarButton href="/new" selected={pathname === '/new'}>
+                      new
+                    </SidebarButton>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
                 {isLoading &&
@@ -49,7 +63,9 @@ export default function CategorySidebar() {
                   categoryList.map(category => (
                     <SidebarMenuItem key={category.name + category.id}>
                       <SidebarMenuButton asChild>
-                        <SidebarButton href={`/?categoryId=${category.id}`}>
+                        <SidebarButton
+                          href={`/${category.id}`}
+                          selected={pathname === `/${category.id}`}>
                           {category.name}
                         </SidebarButton>
                       </SidebarMenuButton>

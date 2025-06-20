@@ -1,4 +1,4 @@
-export interface Menu {
+export type Menu = {
   id: number;
   name: string;
   price: number;
@@ -7,9 +7,10 @@ export interface Menu {
   totalSales: number;
   isNew: boolean;
   category: Category;
-}
+};
 
 export interface MenuResponse {
+  status?: number;
   data: Menu[];
   nextCursor: number | undefined;
 }

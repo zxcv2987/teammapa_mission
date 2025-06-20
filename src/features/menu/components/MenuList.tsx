@@ -18,6 +18,7 @@ export default function MenuList({categoryId}: {categoryId?: string}) {
     },
   });
 
+  console.log(data?.pages[0].data);
   return (
     <div className="flex flex-col gap-4 p-8">
       {isFetching &&
@@ -27,6 +28,14 @@ export default function MenuList({categoryId}: {categoryId?: string}) {
         ))}
       {data?.pages.map(page =>
         page.data.map(menu => <MenuItem key={menu.id} menu={menu} />),
+      )}
+
+      {data?.pages[0].data.length === 0 && (
+        <div className="flex justify-center items-center py-8">
+          <p className="text-zinc-600 dark:text-zinc-400">
+            조회된 메뉴가 없습니다.
+          </p>
+        </div>
       )}
 
       <div ref={ref} className="h-1" />

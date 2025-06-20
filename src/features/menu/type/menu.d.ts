@@ -5,10 +5,11 @@ export interface Menu {
   description: string;
   imageUrl: string;
   totalSales: number;
+  isNew: boolean;
   category: Category;
 }
 
 export interface MenuResponse {
   data: Menu[];
-  pageParams: number;
+  nextCursor: number | undefined;
 }

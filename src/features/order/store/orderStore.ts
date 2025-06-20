@@ -2,7 +2,7 @@ import {create} from 'zustand';
 import {Menu} from '@/features/menu/type/menu';
 import {OrderItemType} from '@/features/order/type/order';
 
-interface OrderState {
+export interface OrderState {
   items: OrderItemType[];
   totalPrice: number;
 

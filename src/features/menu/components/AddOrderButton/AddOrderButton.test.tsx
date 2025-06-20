@@ -1,6 +1,6 @@
 import {render, screen, fireEvent} from '@testing-library/react';
 import {describe, it, expect, beforeEach, vi} from 'vitest';
-import AddOrderButton from './AddOrderButton';
+import AddOrderButton from '../AddOrderButton/AddOrderButton';
 import {OrderState, useOrderStore} from '@/features/order/store/orderStore';
 import {mockMenu} from '@/constants/mocks/test/menu';
 

@@ -25,7 +25,7 @@ export default function CategorySidebar() {
   const pathname = usePathname();
 
   return (
-    <>
+    <div className="w-full">
       <SidebarTrigger
         className={cn('fixed top-0 left-0 z-10', !isMobile && 'hidden')}
       />
@@ -76,6 +76,6 @@ export default function CategorySidebar() {
           </SidebarGroup>
         </SidebarContent>
       </Sidebar>
-    </>
+    </div>
   );
 }

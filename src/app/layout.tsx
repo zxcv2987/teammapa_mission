@@ -22,9 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${notoSansKR.className} antialiased`}>
+      <body className={`${notoSansKR.className} antialiased w-full`}>
         <Providers>
-          <main>{children}</main>
+          <main className="w-full">{children}</main>
           <div id="modal-root">{modal}</div>
         </Providers>
       </body>

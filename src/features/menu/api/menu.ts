@@ -3,7 +3,7 @@ import {apiClient} from '@/lib/apiClient';
 
 export async function getAllMenuList(): Promise<MenuResponse> {
   const response = await apiClient({
-    path: '/api/menu',
+    path: '/api/all-menu',
     options: {
       method: 'GET',
     },

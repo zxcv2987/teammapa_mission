@@ -18,7 +18,6 @@ export default function MenuList({categoryId}: {categoryId?: string}) {
     },
   });
 
-  console.log(data?.pages[0].data);
   return (
     <div className="flex flex-col gap-4 p-8">
       {isFetching &&

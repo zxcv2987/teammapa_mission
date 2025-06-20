@@ -63,6 +63,12 @@ export function menuHandler() {
   });
 }
 
+export function allMenuHandler() {
+  return http.get('/api/all-menu', () => {
+    return HttpResponse.json({data: mockMenuList});
+  });
+}
+
 export function menuByCategoryHandler() {
   return http.get('/api/menu/:categoryId', ({params}) => {
     const {categoryId} = params;

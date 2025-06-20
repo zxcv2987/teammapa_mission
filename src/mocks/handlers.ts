@@ -1,5 +1,6 @@
 import {RequestHandler} from 'msw';
 import {
+  allMenuHandler,
   bestMenuHnadler,
   menuByCategoryHandler,
   menuHandler,
@@ -13,4 +14,5 @@ export const handlers: Array<RequestHandler> = [
   menuByCategoryHandler(),
   orderHandler(),
   bestMenuHnadler(),
+  allMenuHandler(),
 ];

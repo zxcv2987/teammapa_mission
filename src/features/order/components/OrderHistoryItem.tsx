@@ -1,6 +1,6 @@
-import {OrderItemType} from '@/faetures/order/type/order';
+import {OrderItemType} from '@/features/order/type/order';
 
-export default function OrderItem({item}: {item: OrderItemType}) {
+export default function OrderHistoryItem({item}: {item: OrderItemType}) {
   return (
     <div className="flex flex-col py-1 ">
       <div className="flex flex-row gap-2 items-center justify-between">

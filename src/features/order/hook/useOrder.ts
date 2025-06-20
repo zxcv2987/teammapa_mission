@@ -16,9 +16,9 @@ export default function useOrder({onSuccess}: {onSuccess?: () => void}) {
     mutationFn: (orderItems: OrderItemType[]) => postOrder(orderItems),
     onSuccess: (data, variables) => {
       if (data.status === 200) {
+        onSuccess?.();
         addOrderHistory(variables);
         clearOrder();
-        onSuccess?.();
       } else {
         alert('주문에 실패했습니다. 다시 시도해 주세요.');
       }

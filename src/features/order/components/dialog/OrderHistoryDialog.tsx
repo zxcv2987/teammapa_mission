@@ -11,7 +11,7 @@ import {
   DialogClose,
 } from '@/ui/dialog';
 import {Button} from '@/ui/button';
-import OrderItem from '@/features/order/components/OrderItem';
+import OrderHistoryItem from '@/features/order/components/OrderHistoryItem';
 import {useOrderHistoryStore} from '@/features/order/store/orderHistoryStore';
 
 export default function OrderHistoryDialog() {
@@ -35,7 +35,7 @@ export default function OrderHistoryDialog() {
         <div className="flex flex-col gap-2">
           {!isEmpty &&
             orderHistory.map(item => (
-              <OrderItem key={item.menu.id} item={item} />
+              <OrderHistoryItem key={item.menu.id} item={item} />
             ))}
           {isEmpty && <div>주문내역이 없습니다.</div>}
           <div className="flex flex-row justify-between pt-4">

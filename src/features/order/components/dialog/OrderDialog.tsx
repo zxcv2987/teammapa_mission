@@ -34,7 +34,7 @@ export default function OrderDialog() {
 
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>주문</DialogTitle>
+          <DialogTitle>주문하기</DialogTitle>
           <DialogDescription />
         </DialogHeader>
         <OrderList />

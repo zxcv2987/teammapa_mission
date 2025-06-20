@@ -19,7 +19,7 @@ export default function OrderComponent() {
           <SidebarGroupLabel className="text-xl font-bold text-zinc-800 p-4">
             주문서
           </SidebarGroupLabel>
-          <SidebarGroupContent className="p-2">
+          <SidebarGroupContent className="p-2 text">
             <OrderList />
           </SidebarGroupContent>
         </SidebarGroup>

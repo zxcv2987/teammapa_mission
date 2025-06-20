@@ -1,7 +1,7 @@
 import {faker} from '@faker-js/faker';
 import {
+  FOOD_MENUS_BY_CATEGORY,
   generateMockCategories,
-  getMenusByCategory,
   PRICE_RANGES,
 } from './mockData';
 import {Menu} from '@/features/menu/type/menu';
@@ -20,7 +20,10 @@ export const generateMockMenuList = () => {
   let menuId = 1;
 
   categories.forEach(category => {
-    const menuNames = getMenusByCategory(category.name);
+    const menuNames =
+      FOOD_MENUS_BY_CATEGORY[
+        category.name as keyof typeof FOOD_MENUS_BY_CATEGORY
+      ];
     const priceRange = PRICE_RANGES[
       category.name as keyof typeof PRICE_RANGES
     ] || {min: 5000, max: 20000};

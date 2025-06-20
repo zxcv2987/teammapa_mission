@@ -115,14 +115,6 @@ export function generateMockCategories(): Category[] {
   }));
 }
 
-export function getMenusByCategory(categoryName: string): string[] {
-  return (
-    FOOD_MENUS_BY_CATEGORY[
-      categoryName as keyof typeof FOOD_MENUS_BY_CATEGORY
-    ] || []
-  );
-}
-
 // 카테고리별 가격 범위
 export const PRICE_RANGES = {
   한식: {min: 8000, max: 25000},

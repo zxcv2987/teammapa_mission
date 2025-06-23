@@ -15,7 +15,7 @@ export default function useOrder({onSuccess}: {onSuccess?: () => void}) {
   } = useMutation({
     mutationFn: (orderItems: OrderItemType[]) => postOrder(orderItems),
     onSuccess: (data, variables) => {
-      if (data.status === 200) {
+      if (data.status === 200 || data.status === 204) {
         onSuccess?.();
         addOrderHistory(variables);
         clearOrder();

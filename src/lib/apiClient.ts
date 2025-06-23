@@ -5,7 +5,7 @@ export async function apiClient({
   path: string;
   options: RequestInit;
 }) {
-  const baseUrl = 'http://localhost:8080';
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   const fetchOptions: RequestInit = {
     ...options,
     headers: {
@@ -13,6 +13,7 @@ export async function apiClient({
     },
     cache: 'no-store',
   };
+
   const response = await fetch(`${baseUrl}${path}`, fetchOptions);
   return response.json();
 }

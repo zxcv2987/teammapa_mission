@@ -10,7 +10,6 @@ export type Menu = {
 };
 
 export interface MenuResponse {
-  status?: number;
   data: Menu[];
   nextCursor: number | undefined;
 }

@@ -18,6 +18,9 @@ export async function getInfiniteMenuList({
   categoryId?: string;
   pageParams: number;
 }): Promise<MenuResponse> {
+  if (!categoryId) {
+    categoryId = 'all';
+  }
   const response = await apiClient({
     path: `/api/menu?pageParams=${pageParams}&categoryId=${categoryId}`,
     options: {

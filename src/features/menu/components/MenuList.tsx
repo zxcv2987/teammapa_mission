@@ -4,19 +4,10 @@ import {Skeleton} from '@/ui/skeleton';
 import MenuItem from './MenuItem/MenuItem';
 import useInfiniteMenu from '../hook/useInfiniteMenu';
 import {Loader2} from 'lucide-react';
-import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 
 export default function MenuList({categoryId}: {categoryId?: string}) {
-  const {data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage} =
+  const {data, isFetching, isFetchingNextPage, ref} =
     useInfiniteMenu(categoryId);
-
-  const {ref} = useInfiniteScroll({
-    onIntersect: () => {
-      if (hasNextPage && !isFetchingNextPage) {
-        fetchNextPage();
-      }
-    },
-  });
 
   return (
     <div className="flex flex-col gap-4 p-8">

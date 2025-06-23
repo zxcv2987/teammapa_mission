@@ -19,7 +19,7 @@ export default function BestMenuCarousel() {
     queryFn: getBestMenuList,
   });
   return (
-    <div className="w-full max-w-3xl mx-auto px-2">
+    <div className="w-full max-w-3xl mx-auto p-2">
       <h2 className="text-xl font-semibold"> best menu</h2>
       <Carousel
         plugins={[Autoplay({delay: 3000})]}
